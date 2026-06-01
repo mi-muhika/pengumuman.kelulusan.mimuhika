@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan - MI Muhammadiyah Kejajar</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library for Celebration Animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* ================= KODE CSS (STYLING) ================= */
+        :root {
+            --navy: #0a192f;
+            --navy-light: #112240;
+            --gold: #d4af37;
+            --gold-hover: #f1c40f;
+            --white: #ffffff;
+            --gray-light: #f4f4f4;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* SPA Pages Setup */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            min-height: calc(100vh - 60px); /* Minus footer */
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideUpFade 0.6s ease forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header / Hero Section */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1.5rem; /* Ukuran Header Diperkecil */
+            border-bottom: 5px solid var(--gold);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://lh3.googleusercontent.com/d/12ar8cT-z8tunPazd3dILPig3xklsq-uv');
+            background-size: cover;
+            background-position: top center; /* Menyelaraskan gambar ke posisi rata atas */
+            opacity: 0.10; /* Menurunkan opacity gambar latar belakang menjadi 10% */
+            z-index: 1;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-img {
+            width: 90px; /* Ukuran Logo Diperkecil */
+            height: auto;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        header h1 {
+            font-size: 1.8rem; /* Ukuran Judul Diperkecil */
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--gold);
+        }
+
+        header p {
+            font-size: 1rem; /* Ukuran Teks Diperkecil */
+            opacity: 0.9;
+        }
+
+        /* Container & Grid */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--gold);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 i {
+            color: var(--gold);
+        }
+
+        /* Timer Section */
+        .timer-container {
+            text-align: center;
+            margin: 2.5rem 0;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .timer-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .time-item {
+            background: var(--navy);
+            color: var(--gold);
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 90px;
+            box-shadow: 0 4px 10px rgba(10, 25, 47, 0.2);
+        }
+
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            margin: 10px 5px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* Page 2: Sambutan */
+        .sambutan-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            text-align: justify;
+        }
+
+        .signature-area {
+            margin-top: 3rem;
+            text-align: right;
+        }
+
+        .signature-img {
+            width: 150px;
+            margin: 10px 0;
+            filter: grayscale(100%) contrast(120%);
+        }
+
+        /* Page 3: Form Cek */
+        .search-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+            font-size: 1.2rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--navy);
+        }
+
+        /* ================= MODAL & POPUP ANIMATION STYLING ================= */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.45); /* Gelap transparan */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* POPUP BACKGROUND: Putih Bersih */
+        .result-box {
+            background: #ffffff; /* Menggunakan latar belakang putih bersih */
+            width: 92%;
+            max-width: 600px;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(10, 25, 47, 0.25);
+            position: relative;
+            text-align: center;
+            border: 1px solid rgba(10, 25, 47, 0.1);
+            border-top: 6px solid var(--gold);
+            transform: scale(0.75) translateY(-40px);
+            transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show .result-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        /* Layout Penataan Baru (Paling Atas) */
+        .result-intro {
+            text-align: left;
+            font-size: 1.05rem;
+            color: var(--navy);
+            margin: 0.5rem 0 1.5rem 0;
+            line-height: 1.6;
+            border-left: 4px solid var(--gold);
+            padding-left: 12px;
+            font-weight: 500;
+        }
+
+        /* HIGHLIGHT NAMA SISWA */
+        .highlight-student-container {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.03) 0%, rgba(212, 175, 55, 0.08) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .highlight-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 5px;
+        }
+
+        .highlight-sub {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dinyatakan-container {
+            margin: 2rem 0 1.5rem 0;
+            padding: 1.2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px dashed rgba(10, 25, 47, 0.15);
+        }
+
+        .label-dinyatakan {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            color: white;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transform: scale(1);
+            animation: pulse-status 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-status {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+            50% { transform: scale(1.04); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        }
+
+        .status-lulus-theme {
+            border-left-color: var(--success);
+        }
+
+        .status-gagal-theme {
+            border-left-color: var(--danger);
+        }
+
+        .status-lulus-badge { background: linear-gradient(135deg, var(--success) 0%, #27ae60 100%); }
+        .status-gagal-badge { background: linear-gradient(135deg, var(--danger) 0%, #c0392b 100%); }
+
+        .error-msg {
+            color: var(--danger);
+            font-weight: 600;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .data-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(10, 25, 47, 0.08);
+        }
+
+        .data-table th {
+            width: 40%;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .data-table td {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* ================= CETAK (PRINT) CSS ================= */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            header, footer, .btn, .search-container, .close-modal, #action-buttons {
+                display: none !important;
+            }
+            .modal-overlay {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                display: block !important;
+                opacity: 1 !important;
+            }
+            .result-box {
+                transform: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                background: transparent !important;
+                border: none !important;
+            }
+            .status-badge {
+                border: 2px solid black !important;
+                background: transparent !important;
+                color: black !important;
+                box-shadow: none !important;
+                padding: 5px 15px !important;
+                animation: none !important;
+            }
+            .highlight-student-container {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                text-align: left !important;
+                margin-bottom: 1rem !important;
+            }
+            .highlight-name {
+                font-size: 1.4rem !important;
+                text-shadow: none !important;
+            }
+            .dinyatakan-container {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+            .data-table th, .data-table td {
+                border-bottom-color: black !important;
+                color: black !important;
+            }
+            .print-header {
+                display: block !important;
+                text-align: center;
+                border-bottom: 3px solid black;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+            }
+        }
+        .print-header { display: none; }
+    </style>
+<link rel="shortcut icon" href="https://drive.google.com/file/d/1l4u8e6y4gxvNviSFuSj6VMWhML3LmoZv" type="image/x-icon">
+</head>
+<body>
+
+    <header id="main-header">
+        <img src="https://lh3.googleusercontent.com/d/1l4u8e6y4gxvNviSFuSj6VMWhML3LmoZv" 
+             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' fill=\'%23d4af37\' viewBox=\'0 0 24 24\'><path d=\'M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z\'/></svg>'" 
+             alt="Logo Sekolah" class="logo-img">
+        <h1>PENGUMUMAN KELULUSAN</h1>
+        <p>MI Muhammadiyah Kejajar - Tahun Ajaran 2025/2026</p>
+    </header>
+
+    <div id="app">
+        <!-- ================= HALAMAN 1: BERANDA ================= -->
+        <section id="page-home" class="page active">
+            <div class="container">
+                
+                <!-- Welcome Section (Baru: Ucapan Selamat Datang) -->
+                <div class="card" style="text-align: center; margin-bottom: 2rem; border-top: 4px solid var(--gold); padding: 1.5rem;">
+                    <!-- Toga Cap Blue & Gold Inline SVG -->
+                    <div style="display: flex; justify-content: center; margin-bottom: 0.8rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 82px; height: 82px;">
+                            <!-- Blue Cap Top (Diamond) -->
+                            <path d="M256,32L32,144l224,112l160-80v128c0,17.7,14.3,32,32,32s32-14.3,32-32V160L256,32z" fill="#1e40af"/>
+                            <!-- Inside shade of Cap -->
+                            <path d="M256,256L96,176l160,80l160-80L256,256z" fill="#1e3a8a"/>
+                            <!-- Skull Cap under diamond (Blue) -->
+                            <path d="M112,208v48c0,48.6,64.5,88,144,88s144-39.4,144-88v-48l-144,72L112,208z" fill="#2563eb"/>
+                            <!-- Gold Tassel and Cord -->
+                            <path d="M256,144c-8.8,0-16,7.2-16,16s7.2,16,16,16s16-7.2,16-16S264.8,144,256,144z" fill="#d4af37"/>
+                            <path d="M256,160c0,26.5-12,50.2-30.7,66.4l-3.3,2.8C204.6,243.6,192,264,192,288v48c0,8.8,7.2,16,16,16s16-7.2,16-16v-48c0-13.1,6.5-25.2,17.3-32.5l3.3-2.8c24.6-21.3,41.4-52.7,41.4-88C288,160,256,160,256,160z" fill="#d4af37"/>
+                            <path d="M192,336h32v48c0,8.8-7.2,16-16,16s-16-7.2-16-16V336z" fill="#f1c40f"/>
+                        </svg>
+                    </div>
+                    <h2 style="color: var(--navy); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">Selamat Datang</h2>
+                    <p style="color: var(--text-gray); font-size: 0.84rem; line-height: 1.5;">Portal Resmi Pengumuman Kelulusan MI Muhammadiyah Kejajar Tahun Ajaran 2025/2026.</p>
+                </div>
+
+                <!-- Timer Section -->
+                <div class="timer-container" id="timer-section">
+                    <h2><i class="fa-regular fa-clock" style="color: var(--gold);"></i> Hitung Mundur Pengumuman</h2>
+                    <!-- Untuk Live Ubah Menjadi: 2 Juni 2026, 17:00 WIB -->
+                    <p style="margin-top: 10px; color: var(--text-gray);">Pengumuman akan dibuka pada: <strong>2 Juni 2026, 17:00 WIB</strong></p>
+                    
+                    <div class="timer-box" id="countdown-box">
+                        <div class="time-item"><div class="time-value" id="days">00</div><div class="time-label">Hari</div></div>
+                        <div class="time-item"><div class="time-value" id="hours">00</div><div class="time-label">Jam</div></div>
+                        <div class="time-item"><div class="time-value" id="minutes">00</div><div class="time-label">Menit</div></div>
+                        <div class="time-item"><div class="time-value" id="seconds">00</div><div class="time-label">Detik</div></div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <button id="btn-masuk" class="btn" disabled>PENGUMUMAN BELUM DIBUKA</button>
+                    </div>
+                </div>
+
+                <!-- Info Grid -->
+                <div class="grid-cards">
+                    <div class="card">
+                        <h3><i class="fa-solid fa-school"></i> Tentang Madrasah</h3>
+                        <p><strong>MI Muhammadiyah Kejajar</strong> merupakan lembaga pendidikan dasar Islam yang berkomitmen mencetak generasi yang Unggul dalam Prestasi, Berakhlaq Islami.</p>
+                        <hr style="margin:10px 0; border:0; border-top:1px solid #eee;">
+                        <p style="margin-bottom: 5px;"><i class="fa-solid fa-map-location-dot" style="color:var(--gold); width:20px;"></i> Jl. Kauman No. 2 Kejajar, Wonosobo</p>
+                        <p style="margin-bottom: 5px;"><i class="fa-solid fa-phone" style="color:var(--gold); width:20px;"></i> 0286-3326554</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3><i class="fa-solid fa-book-open"></i> Program Pendidikan</h3>
+                        <p><strong>Pendidikan Dasar Umum (MI)</strong></p>
+                        <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 5px;">Menerapkan kurikulum nasional (Kurikulum Merdeka dan Kurikulum Berbasis Cinta) terpadu dengan pendidikan Ismuba (Al-Islam, Kemuhammadiyahan, dan Bahasa Arab) untuk pondasi karakter siswa.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Statistik Pengumuman</h3>
+                        <ul style="list-style: none; margin-top: 10px;">
+                            <li style="margin-bottom: 8px;"><i class="fa-solid fa-calendar-check" style="color:var(--gold); width:20px;"></i> Tanggal: <strong>2 Juni 2026</strong></li>
+                            <li style="margin-bottom: 8px;"><i class="fa-solid fa-users" style="color:var(--gold); width:20px;"></i> Status: <strong>Sistem Online</strong></li>
+                            <li style="margin-bottom: 8px;"><i class="fa-solid fa-award" style="color:var(--gold); width:20px;"></i> Akreditasi: <strong>Unggul</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fa-solid fa-share-nodes"></i> Sosial Media</h3>
+                        <ul style="list-style: none; margin-top: 10px;">
+                            <li style="margin-bottom: 8px;">
+                                <a href="https://instagram.com/mim.kejajar" target="_blank" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fa-brands fa-instagram" style="color:var(--gold); width:20px; font-size: 1.1rem;"></i> Instagram: <strong>@mim.kejajar</strong>
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 8px;">
+                                <a href="https://www.facebook.com/mim.kejajar" target="_blank" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fa-brands fa-facebook" style="color:var(--gold); width:20px; font-size: 1.1rem;"></i> Facebook: <strong>MI Muhammadiyah Kejajar</strong>
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 8px;">
+                                <a href="https://youtube.com/results?search_query=MI Muhammadiyah Kejajar" target="_blank" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fa-brands fa-youtube" style="color:var(--gold); width:20px; font-size: 1.1rem;"></i> Youtube: <strong>MI Muhammadiyah Kejajar</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Informasi Penting (Ukuran Diperkecil) -->
+                <div class="card" style="text-align: center; background: #e8f4fd; border-top: 4px solid #3498db; padding: 1rem; max-width: 800px; margin: 1.5rem auto 0 auto;">
+                    <h4 style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #2980b9; font-size: 1rem; margin-bottom: 0.4rem; font-weight: 600;">
+                        <i class="fa-solid fa-circle-info" style="color: #3498db;"></i> Informasi Penting
+                    </h4>
+                    <p style="font-size: 0.85rem; color: #2c3e50; line-height: 1.4; margin-bottom: 4px;">
+                        Bagi siswa yang dinyatakan <strong>LULUS</strong>, Surat Keterangan Lulus (SKL) dapat langsung dicetak (PDF) melalui sistem ini.
+                    </p>
+                    <p style="font-size: 0.85rem; color: #2c3e50; line-height: 1.4;">
+                        Siswa yang <strong>TIDAK LULUS</strong>, harap tetap semangat dan menghubungi pihak madrasah untuk informasi tindak lanjut.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 2: SAMBUTAN ================= -->
+        <section id="page-sambutan" class="page">
+            <div class="container">
+                <div class="sambutan-content">
+                    <h2 style="color: var(--navy); margin-bottom: 20px; text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;">Sambutan Kepala Madrasah</h2>
+                    
+                    <p><em>Assalamu'alaikum Warahmatullahi Wabarakatuh,</em></p>
+                    <br>
+                    <p>Alhamdulillah, puji syukur senantiasa kita panjatkan kehadirat Allah SWT atas segala rahmat, hidayah, dan inayah-Nya. Shalawat serta salam senantiasa tercurahkan kepada teladan kita, Nabi Muhammad SAW.</p>
+                    <br>
+                    <p>Anak-anakku siswa-siswi Kelas VI MI Muhammadiyah Kejajar Tahun Ajaran 2025/2026 yang Ibu cintai and banggakan. Hari ini adalah momen bersejarah bagi kalian. Pengumuman kelulusan ini adalah hasil dari perjuangan, doa, dan dedikasi kalian selama enam tahun belajar di madrasah ini.</p>
+                    <br>
+                    <p>Bagi yang dinyatakan LULUS, Ibu ucapkan <strong>Selamat dan Sukses!</strong> Jadikan ilmu yang didapat sebagai bekal menapaki jenjang pendidikan yang lebih tinggi. Tetaplah jaga akhlak Islami dan nama baik almamater di mana pun kalian berada.</p>
+                    <br>
+                    <p>Bagi yang mungkin belum berhasil, jangan pernah putus asa. Ini bukanlah akhir dari segalanya, melainkan ujian agar kalian bisa bangkit menjadi lebih kuat dan lebih baik lagi.</p>
+                    <br>
+                    <p><em>Wassalamu'alaikum Warahmatullahi Wabarakatuh.</em></p>
+
+                    <div class="signature-area">
+                        <p>Kejajar, 2 Juni 2026</p>
+                        <p>Kepala Madrasah,</p>
+                        <img src="https://lh3.googleusercontent.com/d/1eRhW2LlMNdtSGDcKy1EJzjYC_KTDtKbJ" 
+                             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'80\' viewBox=\'0 0 150 80\'><text x=\'10\' y=\'50\' font-family=\'cursive\' font-size=\'24\' fill=\'%230a192f\'>Tanda Tangan</text></svg>'" 
+                             alt="Tanda Tangan Kepala Sekolah" class="signature-img">
+                        <p><strong>Siti Asikhah, S.Pd.</strong></p>
+                        <p style="font-size: 0.9rem; color: var(--text-gray);">NBM. 153446</p>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 2rem;">
+                        <button onclick="goToPage('page-home')" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</button>
+                        <button onclick="goToPage('page-cek')" class="btn">Lanjut Cek Kelulusan <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 3: FORM CEK KELULUSAN ================= -->
+        <section id="page-cek" class="page">
+            <div class="container">
+                <div class="search-container">
+                    
+                    <h2 style="color: var(--navy); margin-bottom: 10px;">Cek Status Kelulusan</h2>
+                    <p style="color: var(--text-gray); margin-bottom: 20px;">Silakan masukkan Nomor Induk Siswa Nasional (NISN) Anda untuk melihat hasil pengumuman kelulusan.</p>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="input-nisn" placeholder="Masukkan NISN Anda di sini..." autocomplete="off">
+                    </div>
+                    
+                    <p id="error-message" class="error-msg"><i class="fa-solid fa-triangle-exclamation"></i> Data NISN tidak ditemukan! Silakan periksa kembali.</p>
+                    
+                    <button id="btn-cek-kelulusan" class="btn" style="width: 100%; margin: 0;"><i class="fa-solid fa-magnifying-glass"></i> CEK KELULUSAN</button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODAL DIALOG POPUP HASIL KELULUSAN ================= -->
+        <div id="result-modal" class="modal-overlay">
+            <div id="result-area" class="result-box">
+                <span class="close-modal" onclick="closePopup()">&times;</span>
+                
+                <!-- Kop Surat Khusus Cetak (Hanya tampil di print) -->
+                <div class="print-header">
+                    <h2>SURAT KETERANGAN LULUS (SKL)</h2>
+                    <p>MI MUHAMMADIYAH KEJAJAR</p>
+                    <p style="font-size: 12px;">Tahun Ajaran 2025/2026</p>
+                </div>
+
+                <!-- Pernyataan Baru diletakkan paling atas -->
+                <p class="result-intro">Berdasarkan rapat dewan guru tentang keputusan kelulusan, siswa dengan data berikut:</p>
+
+                <!-- Bagian Highlight Nama Siswa -->
+                <div class="highlight-student-container">
+                    <p class="highlight-sub">Nama Siswa:</p>
+                    <div id="highlight-name" class="highlight-name">-</div>
+                    <p class="highlight-sub" id="highlight-sub-info">NISN: - &bull; KELAS: -</p>
+                </div>
+
+                <!-- Pernyataan "Dinyatakan" dan status diletakkan dibawah data siswa -->
+                <div class="dinyatakan-container">
+                    <p class="label-dinyatakan">Dinyatakan</p>
+                    <div id="status-badge" class="status-badge">LULUS</div>
+                </div>
+
+                <div id="pesan-hasil" style="margin: 20px 0; font-weight: 500;"></div>
+
+                <div id="action-buttons" style="margin-top: 30px;">
+                    <button id="btn-cetak" class="btn" style="background-color: var(--navy); color: white;"><i class="fa-solid fa-print"></i> Cetak SKL (PDF)</button>
+                    <button onclick="closePopup()" class="btn btn-outline"><i class="fa-solid fa-xmark"></i> Tutup</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MI Muhammadiyah Kejajar | <a href="https://www.instagram.com/k_sholahuddin/" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 600;">@k_sholahuddin</a>. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // 1. SETTING WAKTU PENGUMUMAN
+        const targetDate = new Date("May 2, 2026 17:00:00").getTime();
+
+        // 2. DYNAMIC GOOGLE SHEETS INTEGRATION
+        // Spreadsheet ID dari link yang diberikan user
+        const sheetId = '1KOpW84xwYmeEcvyMXF-r880pOSgEqJjcAcMvj3khGv4';
+        // Menggunakan visualisasi query endpoint (CORS-enabled) untuk mengunduh CSV
+        const googleSheetUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+
+        // Database Cadangan jika Google Sheets gagal diakses / Offline
+        const fallbackCSV = `Nama,NISN,Kelas,Status
+Ahmad Fauzi,1234567890,6A,LULUS
+Kamal Sholahuddin,2468013579,6A,LULUS
+Siti Nurhaliza,0987654321,6B,LULUS
+Budi Perkasa,1122334455,6A,TIDAK LULUS
+Aisyah Aqilah,5544332211,6B,LULUS`;
+
+        let dataSiswa = [];
+
+        // Parser CSV Pintar yang mampu mengurai tanda kutip ganda dan koma secara aman
+        function parseCSV(csvText) {
+            dataSiswa = []; // Reset database sebelum diisi
+            const lines = csvText.trim().split(/\r?\n/);
+            if (lines.length === 0) return;
+
+            // Helper untuk membersihkan spasi dan kutip ganda di awal/akhir
+            const cleanField = field => field.replace(/^"|"$/g, '').trim();
+
+            const headers = lines[0].split(',').map(cleanField);
+            
+            for(let i = 1; i < lines.length; i++) {
+                // Regex pemisahan koma dengan mengabaikan koma di dalam kutip ganda
+                const currentLine = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                let obj = {};
+                for(let j = 0; j < headers.length; j++) {
+                    const header = headers[j];
+                    const val = currentLine[j] ? cleanField(currentLine[j]) : '';
+                    obj[header] = val;
+                }
+                if (obj.Nama && obj.NISN) {
+                    dataSiswa.push(obj);
+                }
+            }
+        }
+
+        // Fungsi pengambil data Google Sheets saat website dimuat
+        async function fetchGraduationData() {
+            try {
+                console.log("Menghubungkan ke Google Sheets...");
+                const response = await fetch(googleSheetUrl);
+                if (!response.ok) throw new Error('Koneksi Google Sheets bermasalah.');
+                const csvText = await response.text();
+                parseCSV(csvText);
+                console.log("Berhasil memuat data real-time dari Google Sheets! Total siswa:", dataSiswa.length);
+            } catch (error) {
+                console.warn("Gagal memuat Google Sheets secara langsung. Memuat data cadangan offline...", error);
+                parseCSV(fallbackCSV);
+            }
+        }
+
+        // Jalankan fetch data saat halaman siap
+        window.addEventListener('DOMContentLoaded', fetchGraduationData);
+
+        // 3. LOGIKA COUNTDOWN TIMER
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Kalkulasi hari, jam, menit, detik
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Tampilkan ke HTML jika elemen ada
+            if (document.getElementById("days")) {
+                document.getElementById("days").innerHTML = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerHTML = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerHTML = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            const btnMasuk = document.getElementById("btn-masuk");
+
+            // Jika waktu hitung mundur selesai
+            if (distance < 0) {
+                clearInterval(timer);
+                if (document.getElementById("countdown-box")) {
+                    document.getElementById("countdown-box").style.display = "none";
+                }
+                if (btnMasuk) {
+                    btnMasuk.disabled = false;
+                    btnMasuk.innerHTML = 'MASUK KE HALAMAN PENGUMUMAN <i class="fa-solid fa-arrow-right"></i>';
+                    btnMasuk.onclick = function() { goToPage('page-sambutan'); };
+                }
+                const subTimerText = document.querySelector("#timer-section p");
+                if (subTimerText) {
+                    subTimerText.innerHTML = "<strong style='color: var(--success);'>Pengumuman Telah Dibuka!</strong>";
+                }
+            }
+        }, 1000);
+
+        // 4. LOGIKA NAVIGASI SPA (Single Page Application)
+        function goToPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 5. ANIMASI SELEBRASI (Confetti Burst)
+        function runCelebration() {
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+
+            let duration = 3 * 1000;
+            let end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.8 }
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.8 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // 6. LOGIKA CEK KELULUSAN & POPUP MODAL
+        const inputNisn = document.getElementById('input-nisn');
+        const btnCek = document.getElementById('btn-cek-kelulusan');
+        const modalOverlay = document.getElementById('result-modal');
+        const resultBox = document.getElementById('result-area');
+        const errorMsg = document.getElementById('error-message');
+
+        function prosesCek() {
+            const nisnVal = inputNisn.value.trim();
+            
+            if(nisnVal === "") {
+                inputNisn.focus();
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            
+            // Pencarian data siswa dari database ter-parse
+            const siswa = dataSiswa.find(s => s.NISN === nisnVal);
+
+            if(siswa) {
+                // Terapkan Highlight Nama, NISN & Kelas Siswa secara dinamis
+                document.getElementById('highlight-name').innerText = siswa.Nama;
+                document.getElementById('highlight-sub-info').innerHTML = `NISN: <strong>${siswa.NISN}</strong> &bull; KELAS: <strong>${siswa.Kelas}</strong>`;
+
+                const badge = document.getElementById('status-badge');
+                const pesan = document.getElementById('pesan-hasil');
+                const btnCetak = document.getElementById('btn-cetak');
+
+                // Konfigurasi Tema Kelulusan
+                if(siswa.Status.toUpperCase() === 'LULUS') {
+                    resultBox.className = 'result-box status-lulus-theme';
+                    badge.className = 'status-badge status-lulus-badge';
+                    badge.innerText = 'LULUS';
+                    pesan.innerHTML = 'Selamat! Anda dinyatakan LULUS. Silakan cetak Surat Keterangan Lulus (SKL) Anda sebagai bukti kelulusan sementara.';
+                    btnCetak.style.display = 'inline-block';
+                } else {
+                    resultBox.className = 'result-box status-gagal-theme';
+                    badge.className = 'status-badge status-gagal-badge';
+                    badge.innerText = 'TIDAK LULUS';
+                    pesan.innerHTML = 'Tetap semangat dan jangan putus asa! Silakan hubungi pihak madrasah untuk informasi pendaftaran ulang maupun tindak lanjut.';
+                    btnCetak.style.display = 'none';
+                }
+
+                // Munculkan popup dengan transisi CSS
+                modalOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    modalOverlay.classList.add('show');
+                    if(siswa.Status.toUpperCase() === 'LULUS') {
+                        runCelebration();
+                    }
+                }, 10);
+
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Fungsi Menutup Popup Modal & Kembali ke Halaman Utama (Home)
+        function closePopup() {
+            modalOverlay.classList.remove('show');
+            setTimeout(() => {
+                modalOverlay.style.display = 'none';
+                inputNisn.value = ''; // Reset form NISN
+                goToPage('page-home'); // Otomatis kembali ke beranda utama
+            }, 300);
+        }
+
+        // Trigger Tombol Cek
+        if (btnCek) btnCek.addEventListener('click', prosesCek);
+
+        // Trigger Tombol Enter pada Keyboard
+        if (inputNisn) {
+            inputNisn.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    prosesCek();
+                }
+            });
+        }
+
+        // 7. LOGIKA PRINT SKL NATIVE
+        const btnCetak = document.getElementById('btn-cetak');
+        if (btnCetak) {
+            btnCetak.addEventListener('click', function() {
+                window.print();
+            });
+        }
+
+        // 8. TAHUN DINAMIS UNTUK FOOTER COPYRIGHT
+        const yearSpan = document.getElementById("currentYear");
+        if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+
+    </script>
+</body>
+</html>
