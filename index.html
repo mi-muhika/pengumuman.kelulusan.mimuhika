@@ -940,7 +940,7 @@ Aisyah Aqilah,5544332211,6B,LULUS`;
             if(siswa) {
                 // Terapkan Highlight Nama, NISN & Kelas Siswa secara dinamis
                 document.getElementById('highlight-name').innerText = siswa.Nama;
-                document.getElementById('highlight-sub-info').innerHTML = `NISN: <strong>${siswa.NISN}</strong> &bull; KELAS: <strong>${siswa.Kelas}</strong>`;
+                document.getElementById('highlight-sub-info').innerHTML = `KODE: <strong>${siswa.NISN}</strong> &bull; KELAS: <strong>${siswa.Kelas}</strong>`;
 
                 const badge = document.getElementById('status-badge');
                 const pesan = document.getElementById('pesan-hasil');
